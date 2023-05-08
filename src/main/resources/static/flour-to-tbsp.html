@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flour to Tablespoons Converter</title>
+</head>
+<body>
+<h1>Flour to Tablespoons Converter</h1>
+<form>
+    <label for="grams">Enter the amount of flour in grams:</label>
+    <input type="number" id="grams" name="grams">
+    <br>
+    <button type="button" onclick="convert()">Convert to tablespoons</button>
+</form>
+<br>
+<div id="result"></div>
+
+<script>
+    function convert() {
+        const grams = document.getElementById("grams").value;
+        fetch(`/flour-to-tbsp?grams=${grams}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("result").textContent = `${data} tablespoons`;
+            })
+            .catch(error => {
+                console.error("Error converting flour to tablespoons:", error);
+            });
+    }
+</script>
+</body>
+</html>
